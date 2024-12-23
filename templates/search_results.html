@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <script>
+        function toggleTopKeywords() {
+            var topKeywordsSection = document.getElementById('top-keywords-section');
+            if (topKeywordsSection.style.display === 'none') {
+                topKeywordsSection.style.display = 'block';
+            } else {
+                topKeywordsSection.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchQuery = '{{ request.args.get("query") }}';
+            var resultTitles = document.querySelectorAll('.result-title');
+            resultTitles.forEach(function(title) {
+                var regex = new RegExp(searchQuery, 'gi');
+                title.innerHTML = title.textContent.replace(regex, function(match) {
+                    return '<span class="highlight">' + match + '</span>';
+                });
+            });
+        });
+        </script>
+
+</head>
+<body>
+    <section class="main">
+
+        <nav>
+
+            <div class="logo">
+                <img src="{{ url_for('static', filename='image/images.png') }}">
+            </div>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Règles</a></li>
+                <li><a href="#">My account</a></li>
+                <li><a href="#">Se connecter <i class='fas fa-sign-in-alt'></i></a></li>
+            </ul>
+
+            <div class="social_icon">
+                <a href="{{ url_for('index') }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+            </div>
+
+        </nav>
+
+    </section>
+    <div class="container">
+        <h1>Résultats de recherche</h1>
+        <p>{{ results_count }} résultats</p>
+        <div class="sort-by">
+            <form action="{{ url_for('search_results') }}" method="get">
+                <label for="sort-by">Sort by:</label>
+                <input type="hidden" name="query" value="{{ request.args.get('query') }}">
+                <input type="radio" id="most-recent" name="sort-by" value="most-recent" {% if request.args.get('sort-by') == 'most-recent' %}checked{% endif %}>
+                <label for="most-recent">Most recent</label>
+                <input type="radio" id="most-ancient" name="sort-by" value="most-ancient" {% if request.args.get('sort-by') == 'most-ancient' %}checked{% endif %}>
+                <label for="most-ancient">Most old</label>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+        <div class="top-selection">
+            <form action="{{ url_for('search_results') }}" method="get">
+                <input type="hidden" name="query" value="{{ request.args.get('query') }}">
+                <label for="top-selection">Select:</label>
+                <select id="top-selection" name="top-selection">
+                    <option value="top-keywords" {% if request.args.get('top-selection') == 'top-keywords' %}selected{% endif %}>Top 10 keywords</option>
+                    <option value="top-authors" {% if request.args.get('top-selection') == 'top-authors' %}selected{% endif %}>Top 10 authors</option>
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+        <div class="toggle-top-keywords">
+            <button onclick="toggleTopKeywords()">Toggle Top Keywords</button>
+        </div>
+        {% if top_10_keywords %}
+            <div class="top-keywords" id="top-keywords-section" style="display: none;">
+                <h2>Top 10 Keywords</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for keyword in top_10_keywords %}
+                        <tr>
+                            <td>{{ keyword['title'] }}</td>
+                            <td>{{ keyword['count'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <div class="search-results">
+            {% for result in results %}
+            <div class="result">
+                <div class="result-content">
+                    <h3><a href="{{ result.result_link }}" class="result-title">{{ result.title }}</a></h3>
+                    <p>{{ result.id }}</p>
+                    <p>Assigné à : {{ result.assignee }}</p>
+                    <p>Priorité date : {{ result['priority date'] }}</p>
+                </div>
+                {% if result.figure_link %}
+                <div class="result-image" style="background-image: url('{{ result.figure_link }}')"></div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="{{ url_for('search_results', page=page-1, query=request.args.get('query')) }}">Précédent</a>
+            {% endif %}
+            <span>Page {{ page }} of {{ total_pages }}</span>
+            {% if page < total_pages %}
+            <a href="{{ url_for('search_results', page=page+1, query=request.args.get('query')) }}">Suivant</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

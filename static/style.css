@@ -1,0 +1,256 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../static/image/R.jpg); /* Modifiez le chemin d'accès de l'image ici */
+    background-size: cover;
+    background-position: center;
+}
+
+nav{
+    width: 100%;
+    height: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 10px #45bbff;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    /* z-index: 100; */
+}
+
+nav .logo img{
+    width: 100px;
+    cursor: pointer;
+    margin: 8px 0;
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
+    padding: 0 10px;
+}
+
+nav li a{
+    text-decoration: none;
+    color: #000;
+}
+
+nav li a:hover{
+    color: #45bbff;
+}
+
+nav .social_icon i{
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+nav .social_icon i:hover{
+    color:#45bbff;
+    cursor: pointer;
+}
+
+/* section .main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 10%;
+} */
+
+/* section .main h1{
+    position: relative;
+    font-size: 55px;
+    top: 80px;
+    left: 25px;
+    color: #fff;
+} */
+
+/* section .main h1 span{
+    color: #ff7200;
+}
+
+section .main p{
+    width: 650px;
+    text-align: justify;
+    line-height: 22px;
+    position: relative;
+    top: 125px;
+    left: 25px;
+    color: #fff;
+}
+
+section .main .main_tag .main_btn{
+    background: #ff7200;
+    padding: 10px 20px;
+    position: relative;
+    top: 200px;
+    left: 25px;
+    color: #fff;
+    text-decoration: none;
+}
+
+section .main .main_img img{
+    width: 780px;
+    position: relative;
+    top: 90px;
+    left: 20px;
+} */
+
+.container-form{
+height: 80%;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+    
+}
+
+.form{
+    width: 90%;  
+    height: 85%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 50px;
+    margin-top: 350px; 
+}
+
+.form h2{
+    width: 320px;
+    height: 50px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #45bbff;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 400px;
+    margin-top: -40px;
+}
+.form p{
+    color: #fff;
+    /* height: 100px; */
+}
+.box-regles{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+.box-regles ul li{
+    color: #45bbff;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1600px; /* Augmentation de la largeur maximale à 1600px */
+    margin: 300px 350px; /* Augmentation des marges latérales à 100px */
+    padding: 20px 50px; /* Augmentation du padding latéral à 50px */
+    background-color: #ede7e7;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+#search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Pour centrer les éléments horizontalement */
+}
+
+#search-input {
+    width: 500px; /* Largeur de la barre de recherche */
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Pour arrondir les coins */
+    margin-right: 10px; /* Espace entre l'étiquette et la barre de recherche */
+
+}
+
+#search-input:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 16px;
+    margin-right: 10px; /* Espace entre l'étiquette et la barre de recherche */
+
+}
+
+#search-input,
+label {
+    text-decoration: none; /* Supprimer la ligne soulignée */
+}
+
+#search-form button[type="submit"] {
+    background-color: #45bbff; /* Couleur de fond par défaut */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 16px;
+    border-radius: 20px; /* Pour arrondir les coins */
+    cursor: pointer; /* Curseur de la souris */
+    transition: background-color 0.3s ease; /* Transition en douceur */
+}
+
+#search-form button[type="submit"]:hover {
+    background-color: #45bbff; /* Couleur de fond au survol */
+}
+
+
+
+
+.checkboxes {
+    margin-top: 20px;
+}
+
+.checkboxes label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.checkboxes input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pagination input[type="number"] {
+    width: 50px;
+    height: 30px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+#search-results {
+    margin-top: 20px;
+}

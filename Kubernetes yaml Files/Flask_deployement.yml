@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaski-app  
+  labels:
+    app: flaski-app
+spec:
+  replicas: 2  
+  selector:
+    matchLabels:
+      app: flaski-app
+  template:
+    metadata:
+      labels:
+        app: flaski-app
+    spec:
+      containers:
+      - name: flask-app-container
+        image: zahira201/flask-etl-img:latest
+
+        ports:
+        - containerPort: 5020  
+        env:
+        - name: JAVA_HOME
+          value: "/usr/lib/jvm/java-11-openjdk-amd64" 

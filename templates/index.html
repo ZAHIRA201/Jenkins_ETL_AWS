@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recherche </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <section class="main">
+
+        <nav>
+
+            <div class="logo">
+                <img src="{{ url_for('static', filename='image/images.png') }}">
+            </div>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Règles</a></li>
+                <li><a href="#">My account</a></li>
+                <li><a href="#">Se connecter <i class='fas fa-sign-out-alt'></i></a></li>
+            </ul>
+
+            <div class="social_icon">
+                <!-- Ajoutez ici vos icônes de réseaux sociaux -->
+            </div>
+
+        </nav>
+
+        <div class="container">
+            <h1>Recherche de Articles de Drone</h1><br/><br/>
+            <form id="search-form" action="{{ url_for('search_results') }}" method="GET">
+                <label for="search-input"></label>
+                <input type="search" id="search-input" name="query" placeholder="Entrez votre recherche...">
+                <button type="submit">Rechercher</button>
+            </form>
+            
+            <div id="search-results"></div>
+        </div>
+
+    </section>
+</body>
+</html>
